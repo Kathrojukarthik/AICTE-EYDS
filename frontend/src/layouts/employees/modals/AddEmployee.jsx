@@ -24,7 +24,7 @@ function AddEmployeeModal({ isOpen, onClose }) {
         email: '',
         phone: '',
         residentialAddress: '',
-        cnic: '',
+        Aadhar: '',
         role: '',
         dateOfBirth: '',
         startDate: '',
@@ -54,6 +54,8 @@ function AddEmployeeModal({ isOpen, onClose }) {
         setLoading(true);
         try {
             const response = await axiosInstance.post('/api/employee', formData);
+            console.log("API Response:", response?.data);
+    
             setFormData({
                 employee_id: '1',
                 firstName: '',
@@ -61,14 +63,15 @@ function AddEmployeeModal({ isOpen, onClose }) {
                 email: '',
                 phone: '',
                 residentialAddress: '',
-                cnic: '',
+                Aadhar: '',
                 role: '',
                 dateOfBirth: '',
                 startDate: '',
                 status: 'Active',
                 gender: 'Male'
             });
-            let Message = response.data.message
+    
+            const Message = response?.data?.message || "Employee added successfully";
             toast({
                 title: Message,
                 status: 'success',
@@ -76,10 +79,11 @@ function AddEmployeeModal({ isOpen, onClose }) {
                 duration: 5000,
                 isClosable: true,
             });
+    
             setLoading(false);
             onClose();
         } catch (error) {
-            let Error = error.response.data.message
+            const Error = error.response?.data?.message || "Something went wrong!";
             toast({
                 title: Error,
                 status: 'error',
@@ -88,8 +92,10 @@ function AddEmployeeModal({ isOpen, onClose }) {
                 isClosable: true,
             });
             setLoading(false);
+            console.error("API Error:", error.response?.data);
         }
     };
+    
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="xl" closeOnOverlayClick={false} isCentered>
             <ModalOverlay />
@@ -104,7 +110,7 @@ function AddEmployeeModal({ isOpen, onClose }) {
                         <Input mt={3} mb={3} type='email' required placeholder='Email' name='email' value={formData.email} onChange={handleChange} />
                         <Input mt={3} mb={3} type='number' required placeholder='Phone' name='phone' value={formData.phone} onChange={handleChange} />
                         <Input mt={3} mb={3} type='text' required placeholder='Residential Address' name='residentialAddress' value={formData.residentialAddress} onChange={handleChange} />
-                        <Input mt={3} mb={3} type='text' required placeholder='CNIC' name='cnic' value={formData.cnic} onChange={handleChange} />
+                        <Input mt={3} mb={3} type='number' required placeholder='Aadhar Number' name='Aadhar' value={formData.Aadhar} onChange={handleChange} />
                         <Input mt={3} mb={3} type='text' required placeholder='Role' name='role' value={formData.role} onChange={handleChange} />
                         <Input mt={3} mb={3} required placeholder="Date Of Birth" type="date" name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange} />
                         <Input mt={3} mb={3} required placeholder="Start Date" type="date" name='startDate' value={formData.startDate} onChange={handleChange} />

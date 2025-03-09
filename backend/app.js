@@ -5,8 +5,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 
-
-// Routes Imports
 const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
 const employeeRoute = require('./routes/employee');
@@ -24,7 +22,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// API's
 app.use('/api', authRoute);
 app.use('/api', dashboardRoute);
 app.use('/api', employeeRoute);

@@ -13,7 +13,7 @@ router.post('/employee', async (req, res) => {
             email,
             phone,
             residentialAddress,
-            cnic,
+            Aadhar,
             role,
             dateOfBirth,
             startDate,
@@ -25,9 +25,9 @@ router.post('/employee', async (req, res) => {
             return res.status(400).json({ message: 'Email already exists' });
         }
 
-        const existingEmployeeByCnic = await Employee.findOne({ cnic });
-        if (existingEmployeeByCnic) {
-            return res.status(400).json({ message: 'CNIC already exists' });
+        const existingEmployeeByAadhar = await Employee.findOne({ Aadhar });
+        if (existingEmployeeByAadhar) {
+            return res.status(400).json({ message: 'Aadhar already exists' });
         }
 
         const newEmployee = new Employee({
@@ -37,7 +37,7 @@ router.post('/employee', async (req, res) => {
             email,
             phone,
             residentialAddress,
-            cnic,
+            Aadhar,
             role,
             dateOfBirth,
             startDate,
@@ -56,7 +56,10 @@ router.get('/employees', async (req, res) => {
     try {
         const employees = await Employee.find();
         res.send(employees)
+    
+        console.log("Request Payload:", req.body);
     } catch (error) {
+
         res.status(500).json({ message: error });
     }
 });

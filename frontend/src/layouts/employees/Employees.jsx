@@ -116,7 +116,7 @@ function Employees() {
                   <Th>ID</Th>
                   <Th>Name</Th>
                   <Th>Email</Th>
-                  <Th>CNIC</Th>
+                  <Th>Aadhar</Th>
                   <Th>Role</Th>
                   <Th>Status</Th>
                   <Th>Gender</Th>
@@ -129,7 +129,7 @@ function Employees() {
                     <Td>{employee.employee_id}</Td>
                     <Td>{`${employee.firstName} ${employee.lastName}`}</Td>
                     <Td>{employee.email}</Td>
-                    <Td>{employee.cnic}</Td>
+                    <Td>{employee.Aadhar}</Td>
                     <Td>{employee.role}</Td>
                     <Td>{employee.status}</Td>
                     <Td>{employee.gender}</Td>
